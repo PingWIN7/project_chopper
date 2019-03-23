@@ -13,6 +13,7 @@ using Chopper.Code;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input.Touch;
+using Microsoft.Xna.Framework.Input;
 
 namespace Game1Test.Code
 {
@@ -45,57 +46,54 @@ namespace Game1Test.Code
             {
                 lastStatePressed = pressed;
                 pressed = false;
-                TouchCollection touchCollection = TouchPanel.GetState();
 
-                foreach (TouchLocation tl in touchCollection)
+                MouseState mouseState = Mouse.GetState();
+
+                int mouseX = mouseState.X;
+                int mouseY = mouseState.Y;
+
+                if (mouseX >= position.X && mouseX <= position.X + texture.Width && mouseY >= position.Y && mouseY <= position.Y + texture.Height)
                 {
-                    if ((tl.State == TouchLocationState.Pressed)
-                            || (tl.State == TouchLocationState.Moved))
+                    if (mouseState.LeftButton == ButtonState.Pressed)
                     {
-
-                        if (tl.Position.X >= position.X && tl.Position.X <= position.X + texture.Width)
-                        {
-                            if (tl.Position.Y >= position.Y && tl.Position.Y <= position.Y + texture.Height)
-                            {
-                                pressed = true;
-                                break;
-                            }
-                        }
-                        //Debug.WriteLine(tl.Position.ToString());
+                        pressed = true;
                     }
-                    //hud.UpdateCoordinates(tl.Position.ToString());
+                    else if (lastStatePressed && mouseState.LeftButton == ButtonState.Released)
+                    {
+                        pressed = false;
+                    }
                 }
+                
                 specialCase = false;
                 base.Update(gameTime);
             }
         }
 
+        //Button stretching algorithm
         public void Update(GameTime gameTime, int Width)
         {
             if (!disabled)
             {
                 lastStatePressed = pressed;
                 pressed = false;
-                TouchCollection touchCollection = TouchPanel.GetState();
 
-                foreach (TouchLocation tl in touchCollection)
+                MouseState mouseState = Mouse.GetState();
+
+                int mouseX = mouseState.X;
+                int mouseY = mouseState.Y;
+
+                if (mouseX >= position.X && mouseX <= position.X + Width && mouseY >= position.Y && mouseY <= position.Y + texture.Height)
                 {
-                    if ((tl.State == TouchLocationState.Pressed)
-                            || (tl.State == TouchLocationState.Moved))
+                    if (mouseState.LeftButton == ButtonState.Pressed)
                     {
-
-                        if (tl.Position.X >= position.X && tl.Position.X <= position.X + Width)
-                        {
-                            if (tl.Position.Y >= position.Y && tl.Position.Y <= position.Y + texture.Height)
-                            {
-                                pressed = true;
-                                break;
-                            }
-                        }
-                        //Debug.WriteLine(tl.Position.ToString());
+                        pressed = true;
                     }
-                    //hud.UpdateCoordinates(tl.Position.ToString());
+                    else if (lastStatePressed && mouseState.LeftButton == ButtonState.Released)
+                    {
+                        pressed = false;
+                    }
                 }
+                
                 specialCase = false;
                 base.Update(gameTime);
             }
