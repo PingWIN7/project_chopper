@@ -41,8 +41,58 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Code\Allies\Helipad.cs" />
+    <Compile Include="Code\Building.cs" />
+    <Compile Include="Code\BulletType.cs" />
+    <Compile Include="Code\Camera.cs" />
+    <Compile Include="Code\Choppers\BasicChopper.cs" />
+    <Compile Include="Code\Choppers\ChopperBase.cs" />
+    <Compile Include="Code\Choppers\ChopperList.cs" />
+    <Compile Include="Code\ColouringTimer.cs" />
+    <Compile Include="Code\Effects\EffectManager.cs" />
+    <Compile Include="Code\Effects\EffectsList.cs" />
+    <Compile Include="Code\Enemies\Bullet.cs" />
+    <Compile Include="Code\Enemies\BulletHoming.cs" />
+    <Compile Include="Code\Enemies\EnemyMaker.cs" />
+    <Compile Include="Code\Enemies\EnemyStatistics.cs" />
+    <Compile Include="Code\Enemies\MovingEnemy.cs" />
+    <Compile Include="Code\Enemies\RocketTurret.cs" />
+    <Compile Include="Code\Enemies\RocketTurretHoming.cs" />
+    <Compile Include="Code\Enemies\ShotgunTurret.cs" />
+    <Compile Include="Code\Enemies\Turret.cs" />
     <Compile Include="Code\Game1.cs" />
+    <Compile Include="Code\GameData.cs" />
+    <Compile Include="Code\GameManager.cs" />
+    <Compile Include="Code\GlobalColouring.cs" />
+    <Compile Include="Code\HeliSystem\AmmoSystem.cs" />
+    <Compile Include="Code\HeliSystem\FuelSystem.cs" />
+    <Compile Include="Code\HeliSystem\HealthSystem.cs" />
+    <Compile Include="Code\HeliSystem\HelicopterSystem.cs" />
+    <Compile Include="Code\Level.cs" />
+    <Compile Include="Code\Player.cs" />
+    <Compile Include="Code\PlayerStats.cs" />
     <Compile Include="Code\Program.cs" />
+    <Compile Include="Code\Sprite.cs" />
+    <Compile Include="Code\Stats.cs" />
+    <Compile Include="Code\Stick.cs" />
+    <Compile Include="Code\Timer.cs" />
+    <Compile Include="Code\UI\Button.cs" />
+    <Compile Include="Code\UI\ButtonWithText.cs" />
+    <Compile Include="Code\UI\Hud.cs" />
+    <Compile Include="Code\UI\MissionScreen.cs" />
+    <Compile Include="Code\UI\UI.cs" />
+    <Compile Include="Code\UI\UIClass.cs" />
+    <Compile Include="Code\Upgrades\AmmoUpgrade.cs" />
+    <Compile Include="Code\Upgrades\HealthUpgrade.cs" />
+    <Compile Include="Code\Upgrades\OilUpgrade.cs" />
+    <Compile Include="Code\Upgrades\Upgrade.cs" />
+    <Compile Include="Code\Upgrades\UpgradeSystem.cs" />
+    <Compile Include="Code\Weapons\WeaponList.cs" />
+    <Compile Include="Code\Weapons\WeaponStatistics.cs" />
+    <Compile Include="Code\Weapons\WeaponSystem.cs" />
+    <Compile Include="Code\Weapons\WeaponSystems\MGunSystem.cs" />
+    <Compile Include="Code\Weapons\WeaponSystems\RocketSystem.cs" />
+    <Compile Include="Code\Weapons\WeaponSystems\ShotgunSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
