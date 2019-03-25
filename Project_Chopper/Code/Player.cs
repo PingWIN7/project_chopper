@@ -239,67 +239,59 @@ namespace Chopper.Code
             chopperBase.Position += velocity;
 
             //if (key.IsKeyDown(Keys.A))
-            if (UI.stick.IsItPressed())
+
+
+            //float x = stick.GetXMultiplier();
+
+            bool isMoving = false;
+
+            Vector2 YSpeed = new Vector2(0,0);
+            if (key.IsKeyDown(Keys.S))
             {
+                YSpeed = new Vector2(basespeed.X, basespeed.Y);
+                YSpeed *= -1;
+                isMoving = true;
+            }
+            //ro
 
-                //float x = stick.GetXMultiplier();
-
-                Vector2 YSpeed = new Vector2(basespeed.X, basespeed.Y);
-                YSpeed *= UI.stick.GetYMultiplier();
-                //rotMatrix = Matrix.CreateRotationZ(sprite.Rotation);
-                //velocity = Vector2.Transform(YSpeed, rotMatrix);
-                //sprite.Position = new Vector2(sprite.Position.X + velocity.Y, sprite.Position.Y + velocity.X);
-
-
-                Vector2 XSpeed = new Vector2(basespeed.Y, basespeed.X);
-                XSpeed *= UI.stick.GetXMultiplier();
+            if (key.IsKeyDown(Keys.W))
+            {
+                YSpeed = new Vector2(basespeed.X, basespeed.Y);
+                YSpeed *= 1;
+                isMoving = true;
+            }
+            //rotMatrix = Matrix.CreateRotationZ(sprite.Rotation);
+            //velocity = Vector2.Transform(YSpeed, rotMatrix);
+            //sprite.Position = new Vector2(sprite.Position.X + velocity.Y, sprite.Position.Y + velocity.X);
 
 
-                if (fuelSystem.Usable())
-                {
-                    speed = new Vector2(YSpeed.X + XSpeed.X, YSpeed.Y + XSpeed.Y);
-                }
-                //rotMatrix = Matrix.CreateRotationZ(sprite.Rotation);
-                //velocity = Vector2.Transform(XSpeed, rotMatrix);
-                //sprite.Position = new Vector2(sprite.Position.X + velocity.Y, sprite.Position.Y + velocity.X);
+            Vector2 XSpeed=new Vector2(0,0); 
+            if (key.IsKeyDown(Keys.A))
+            {
+                XSpeed = new Vector2(basespeed.Y, basespeed.X);
+                XSpeed *= 1;
+                isMoving = true;
+            }
 
-                /*if (arrows[0].IsItPressed()) // left
-                {
-                    rotMatrix = Matrix.CreateRotationZ(sprite.Rotation);
-                    velocity = Vector2.Transform(speed, rotMatrix);
-                    sprite.Position = new Vector2(sprite.Position.X + velocity.Y, sprite.Position.Y + velocity.X);
-                }
-                //if (key.IsKeyDown(Keys.D))
-                if (arrows[2].IsItPressed()) //right
-                {
-                    sprite.Position = new Vector2(sprite.Position.X - velocity.Y, sprite.Position.Y - velocity.X);
-                }
-                //if (key.IsKeyDown(Keys.W))
-                if (arrows[1].IsItPressed()) // up
-                {
-                    //speed = new Vector2(0, -7);
-                    rotMatrix = Matrix.CreateRotationZ(sprite.Rotation);
-                    velocity = Vector2.Transform(speed, rotMatrix);
-                    sprite.Position += velocity;
-                }
-                //if (key.IsKeyDown(Keys.S))
-                if (arrows[3].IsItPressed()) //down
-                {
-                    //speed = new Vector2(0, -7);
-                    speed *= -1;
-                    rotMatrix = Matrix.CreateRotationZ(sprite.Rotation);
-                    velocity = Vector2.Transform(speed, rotMatrix);
-                    sprite.Position += velocity;
-                }*/
+            if (key.IsKeyDown(Keys.D))
+            {
+                XSpeed = new Vector2(basespeed.Y, basespeed.X);
+                XSpeed *= -1;
+                isMoving = true;
             }
 
 
-            if (UI.rotateLeft.IsItPressed()) //rotate left
+            if (fuelSystem.Usable() && isMoving)
+            {
+                speed = new Vector2(YSpeed.X + XSpeed.X, YSpeed.Y + XSpeed.Y);
+            }
+
+            if (key.IsKeyDown(Keys.Left)) //rotate left
             {
                 chopperBase.Rotation -= rotate;
             }
 
-            if (UI.rotateRight.IsItPressed()) //rotate right
+            if (key.IsKeyDown(Keys.Right)) //rotate right
             {
                 chopperBase.Rotation += rotate;
             }
@@ -311,8 +303,7 @@ namespace Chopper.Code
 
 
 
-            //if (key.IsKeyDown(Keys.Space))
-            if (UI.fireButton.IsItPressed())
+            if (key.IsKeyDown(Keys.Space))
             {
                 /*If we fire with the system we need to know so we can pass the bullets to the game manager*/
                 chopperBase.Fire(gameTime, ammoSystem);
@@ -386,7 +377,7 @@ namespace Chopper.Code
                 Vector2 generated = new Vector2(r.Next(101)-50, r.Next(101)-50);
                 effects.Add(EffectsList.GetEffect(1, new Vector2(chopperBase.Center.X+ generated.X,chopperBase.Center.Y- generated.Y)));*/
                 Vector2 generated = new Vector2(r.Next(25) - 12, r.Next(25) - 12);
-                effects.Add(EffectsList.GetEffect( EffectType.Smoke, new Vector2(chopperBase.Center.X + generated.X, chopperBase.Center.Y - generated.Y)));
+                effects.Add(EffectsList.GetEffect(EffectType.Smoke, new Vector2(chopperBase.Center.X + generated.X, chopperBase.Center.Y - generated.Y)));
             }
             for (int i = 0; i < effects.Count; i++)
             {
