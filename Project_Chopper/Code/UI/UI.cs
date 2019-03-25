@@ -23,10 +23,10 @@ namespace Game1Test.Code.UI
 
         }*/
 
-        static public Stick stick;
-        static public Button rotateLeft;
-        static public Button rotateRight;
-        static public Button fireButton;
+        //static public Stick stick;
+        //static public Button rotateLeft;
+        //static public Button rotateRight;
+        //static public Button fireButton;
         static public ButtonWithText landButton;
         static public Button upgradeButton;
         static public Button zoomInButton;
@@ -55,13 +55,13 @@ namespace Game1Test.Code.UI
 
             SpriteFont spritefont = Content.Load<SpriteFont>("hudFont");
 
-            stick = new Stick(stickBaseTexture, stickTexture, new Vector2(BufferWidth - 50 - rightArrowTexture.Width - stickBaseTexture.Width, BufferHeight - 50 - stickBaseTexture.Height));
+            //stick = new Stick(stickBaseTexture, stickTexture, new Vector2(BufferWidth - 50 - rightArrowTexture.Width - stickBaseTexture.Width, BufferHeight - 50 - stickBaseTexture.Height));
 
             //fireButton = new Button(fireButtonTexture, new Vector2(5, BufferHeight - 50 - fireButtonTexture.Height));
-            fireButton = new ButtonWithText(baseButtonTexture, new Vector2(5, BufferHeight - 50 - baseButtonTexture.Height),spritefont,"Fire",buttonTextTransparency);
+            //fireButton = new ButtonWithText(baseButtonTexture, new Vector2(5, BufferHeight - 50 - baseButtonTexture.Height),spritefont,"Fire",buttonTextTransparency);
 
-            rotateLeft = new Button(leftArrowTexture, new Vector2(BufferWidth - 50 - stickBaseTexture.Width - leftArrowTexture.Width - rightArrowTexture.Width, BufferHeight - 50 - stickBaseTexture.Height));
-            rotateRight = new Button(rightArrowTexture, new Vector2(BufferWidth - 50 - rightArrowTexture.Width, BufferHeight - 50 - stickBaseTexture.Height));
+           //rotateLeft = new Button(leftArrowTexture, new Vector2(BufferWidth - 50 - stickBaseTexture.Width - leftArrowTexture.Width - rightArrowTexture.Width, BufferHeight - 50 - stickBaseTexture.Height));
+            //rotateRight = new Button(rightArrowTexture, new Vector2(BufferWidth - 50 - rightArrowTexture.Width, BufferHeight - 50 - stickBaseTexture.Height));
 
             //landButton = new Button(landButtonTexture, new Vector2(BufferWidth / 2 - landButtonTexture.Width / 2, BufferHeight - 50 - landButtonTexture.Height));
             landButton = new ButtonWithText(baseButtonTexture, new Vector2(BufferWidth / 2 - baseButtonTexture.Width / 2, BufferHeight - 50 - baseButtonTexture.Height),spritefont,"Land",buttonTextTransparency);
@@ -76,10 +76,10 @@ namespace Game1Test.Code.UI
 
         static public void Update (GameTime gameTime)
         {
-            stick.Update(gameTime);
-            rotateLeft.Update(gameTime);
-            rotateRight.Update(gameTime);
-            fireButton.Update(gameTime);
+            //stick.Update(gameTime);
+            //rotateLeft.Update(gameTime);
+            //rotateRight.Update(gameTime);
+            //fireButton.Update(gameTime);
             landButton.Update(gameTime);
             upgradeButton.Update(gameTime);
             zoomInButton.Update(gameTime);
@@ -100,10 +100,10 @@ namespace Game1Test.Code.UI
 
         static public void Draw(SpriteBatch spriteBatch,float layer)
         {
-            stick.Draw(spriteBatch, layer);
-            rotateLeft.Draw(spriteBatch, layer);
-            rotateRight.Draw(spriteBatch, layer);
-            fireButton.Draw(spriteBatch, layer);
+            //stick.Draw(spriteBatch, layer);
+            //rotateLeft.Draw(spriteBatch, layer);
+            //rotateRight.Draw(spriteBatch, layer);
+            //fireButton.Draw(spriteBatch, layer);
             landButton.Draw(spriteBatch, layer);
             upgradeButton.Draw(spriteBatch, layer);
             zoomInButton.Draw(spriteBatch, layer);
