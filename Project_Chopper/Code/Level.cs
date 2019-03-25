@@ -29,6 +29,14 @@ namespace Chopper.Code
             }
         }
 
+        public List<Building> BuildingEnemies
+        {
+            get
+            {
+                return buildingEnemies;
+            }
+        }
+
         public List<Helipad> Helipads
         {
             get

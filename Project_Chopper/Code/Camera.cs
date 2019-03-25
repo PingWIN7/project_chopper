@@ -65,7 +65,7 @@ namespace Chopper.Code
         public Camera()
         {
             //zoom = 1.0f;
-            zoom = 0.5f;
+            zoom = 0.6f;
             rotation = 0.0f;
             position = Vector2.Zero;
         }
@@ -85,16 +85,16 @@ namespace Chopper.Code
         {
             KeyboardState key = Keyboard.GetState();
             //if (key.IsKeyDown(Keys.PageUp))
-            if (UI.zoomInButton.IsItPressed())
+            if (UI.zoomInButton.IsItPressed() || key.IsKeyDown(Keys.Add))
             {
                 if (zoom <= 1.5)
                 {
                     zoom += 0.01f;
                 }
             }
-            if (UI.zoomOutButton.IsItPressed())
+            if (UI.zoomOutButton.IsItPressed() || key.IsKeyDown(Keys.Subtract))
             {
-                if (zoom >= 0.4)
+                if (zoom >= 0.3)
                 {
                     zoom -= 0.01f;
                 }

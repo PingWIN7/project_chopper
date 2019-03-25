@@ -140,6 +140,14 @@ namespace Chopper.Code
             }
         }
 
+        public Vector2 Speed
+        {
+            get
+            {
+                return speed;
+            }
+        }
+
         /*public List<Bullet> Bullets
         {
             get
@@ -301,7 +309,21 @@ namespace Chopper.Code
                 landing = true;
             }
 
-
+            if (key.IsKeyDown(Keys.X)|| key.IsKeyDown(Keys.L))
+            {
+                if (!onLand)
+                {
+                    lifting = false;
+                    changeAltitude = true;
+                    landing = true;
+                }
+                else
+                {
+                    landing = false;
+                    changeAltitude = true;
+                    lifting = true;
+                }
+            }
 
             if (key.IsKeyDown(Keys.Space))
             {
@@ -402,7 +424,9 @@ namespace Chopper.Code
             cost += fuelSystem.FillAmountReturnAmmount(fillRate);
             cost += healthSystem.FillAmountReturnAmmount(1);
 
-            if (UI.landButton.IsItPressed())
+
+            KeyboardState key = Keyboard.GetState();
+            if (UI.landButton.IsItPressed() || key.IsKeyDown(Keys.X) || key.IsKeyDown(Keys.L))
             {
                 lifting = true;
             }
@@ -414,7 +438,8 @@ namespace Chopper.Code
         public void UpdateOnLand(GameTime gameTime)
         {
             MustUpdate(gameTime);
-            if (UI.landButton.IsItPressed())
+            KeyboardState key = Keyboard.GetState();
+            if (UI.landButton.IsItPressed()|| key.IsKeyDown(Keys.X) || key.IsKeyDown(Keys.L))
             {
                 lifting = true;
             }

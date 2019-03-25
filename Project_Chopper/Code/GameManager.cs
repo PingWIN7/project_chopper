@@ -6,6 +6,7 @@ using Game1Test.Code.UI;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -54,6 +55,12 @@ namespace Chopper.Code
         {
             if (GameData.inGameState != InGameState.Paused)
             {
+                KeyboardState key = Keyboard.GetState();
+                if (key.IsKeyDown(Keys.P))
+                {
+                    UI.enableDeveloperStats=true;
+                }
+
                 UI.Update(gameTime);
                 UI.upgradeButton.Visible(false);
                 bool isPlayerAboveHelipad = PlayerAboveHelipad();
@@ -105,8 +112,7 @@ namespace Chopper.Code
                                 int cost = player.UpdateOnHelipad(gameTime);
                                 UI.upgradeButton.Visible(true);
                                 UI.upgradeButton.SpecialCase();
-
-                                if (UI.upgradeButton.IsItPressed())
+                                if (UI.upgradeButton.IsItPressed() || key.IsKeyDown(Keys.U))
                                 {
                                     GameData.inGameState = InGameState.Paused;
                                     GameData.pauseReason = PauseReason.Upgrade;
@@ -140,6 +146,10 @@ namespace Chopper.Code
                         GameData.inGameState = InGameState.Going;
                     }
                 }
+            }
+            if (UI.enableDeveloperStats)
+            {
+                UI.UpdateDeveloperStats(CollectDeveloperStats(gameTime));
             }
         }
 
@@ -326,6 +336,28 @@ namespace Chopper.Code
                 }
             }
             //player.EmptyBullets();
+        }
+
+        private List<string> CollectDeveloperStats(GameTime gameTime)
+        {
+            List<string> tmp = new List<string>();
+            float frameRate = (float)Math.Round(1 / (float)gameTime.ElapsedGameTime.TotalSeconds);
+            tmp.Add("Framerate: " + frameRate);
+            tmp.Add("Player position: " + player.PlayerCenter.ToString());
+            tmp.Add("Rotation value: " + player.PlayerRotation.ToString());
+            tmp.Add("Force applied (perspective wise): " + player.Speed);
+            tmp.Add("Player above helipad: " + PlayerAboveHelipad());
+            tmp.Add("Friendly:");
+            tmp.Add("Projectiles count: " + friendlyBullets.Count);
+            tmp.Add("Explosive projectiles count: " + friendlyExplosiveBullets.Count);
+            tmp.Add("Enemy:");
+            tmp.Add("Turrets:" + level.TurretEnemies.Count);
+            tmp.Add("Buildings:" + level.BuildingEnemies.Count);
+            tmp.Add("Projectiles count: " + bullets.Count);
+            tmp.Add("Explosive projectiles count: " + explosiveBullets.Count);
+
+
+            return tmp;
         }
 
 

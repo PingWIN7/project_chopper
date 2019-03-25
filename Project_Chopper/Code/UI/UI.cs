@@ -34,6 +34,11 @@ namespace Game1Test.Code.UI
         static public bool showMissionTextOnScreen;
         static private string missionText;
         static private SpriteFont spritefont;
+        static private SpriteFont developerSpritefont;
+
+        static public bool enableDeveloperStats=false;
+        static private List<string> developerStats;
+
 
 
         static public void LoadContent(ContentManager Content, int BufferWidth, int BufferHeight)
@@ -75,6 +80,10 @@ namespace Game1Test.Code.UI
 
             zoomInButton = new Button(zoomInTexture, new Vector2(BufferWidth-50 * 2 - zoomOutTexture.Width - zoomInTexture.Width, 0));
             zoomOutButton = new Button(zoomOutTexture, new Vector2(BufferWidth-50 - zoomOutTexture.Width, 0));
+
+            developerStats = new List<string>();
+
+            developerSpritefont = Content.Load<SpriteFont>("DeveloperFont");
         }
 
         static public void Update (GameTime gameTime)
@@ -87,6 +96,12 @@ namespace Game1Test.Code.UI
             upgradeButton.Update(gameTime);
             zoomInButton.Update(gameTime);
             zoomOutButton.Update(gameTime);
+        }
+
+        static public void UpdateDeveloperStats(List<string> stats)
+        {
+            developerStats.Clear();
+            developerStats = stats;
         }
 
         static public void EnableTextOnScreen(int triggerValue)
@@ -106,7 +121,7 @@ namespace Game1Test.Code.UI
             }
 
         }
-
+        
         static public void ChangeLandingButtonText(bool inAir)
         {
             if (inAir)
@@ -132,6 +147,14 @@ namespace Game1Test.Code.UI
             if (showMissionTextOnScreen)
             {
                 spriteBatch.DrawString(spritefont, missionText , new Vector2(700, 200), Microsoft.Xna.Framework.Color.Black);
+            }
+            if (enableDeveloperStats)
+            {
+                spriteBatch.DrawString(developerSpritefont, "Developer stats:", new Vector2(0, 300), Microsoft.Xna.Framework.Color.Black);
+                for (int i = 0; i < developerStats.Count; i++)
+                {
+                    spriteBatch.DrawString(developerSpritefont, developerStats[i], new Vector2(0, 325+i*25), Microsoft.Xna.Framework.Color.Black);
+                }
             }
         }
     }
