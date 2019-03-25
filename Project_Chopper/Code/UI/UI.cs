@@ -31,7 +31,10 @@ namespace Game1Test.Code.UI
         static public Button upgradeButton;
         static public Button zoomInButton;
         static public Button zoomOutButton;
-        
+        static public bool showMissionTextOnScreen;
+        static private string missionText;
+        static private SpriteFont spritefont;
+
 
         static public void LoadContent(ContentManager Content, int BufferWidth, int BufferHeight)
         {
@@ -53,7 +56,7 @@ namespace Game1Test.Code.UI
             Texture2D zoomInTexture = Content.Load<Texture2D>("UI\\zoomIn");
             Texture2D zoomOutTexture = Content.Load<Texture2D>("UI\\zoomOut");
 
-            SpriteFont spritefont = Content.Load<SpriteFont>("hudFont");
+            spritefont = Content.Load<SpriteFont>("hudFont");
 
             //stick = new Stick(stickBaseTexture, stickTexture, new Vector2(BufferWidth - 50 - rightArrowTexture.Width - stickBaseTexture.Width, BufferHeight - 50 - stickBaseTexture.Height));
 
@@ -86,6 +89,24 @@ namespace Game1Test.Code.UI
             zoomOutButton.Update(gameTime);
         }
 
+        static public void EnableTextOnScreen(int triggerValue)
+        {
+            switch (triggerValue)
+            {
+                case 0:
+                    showMissionTextOnScreen = true;
+                    missionText = "Return and land on helipad";
+                    break;
+                case 100:
+                    showMissionTextOnScreen = true;
+                    missionText = "Mission completed";
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
         static public void ChangeLandingButtonText(bool inAir)
         {
             if (inAir)
@@ -108,6 +129,10 @@ namespace Game1Test.Code.UI
             upgradeButton.Draw(spriteBatch, layer);
             zoomInButton.Draw(spriteBatch, layer);
             zoomOutButton.Draw(spriteBatch, layer);
+            if (showMissionTextOnScreen)
+            {
+                spriteBatch.DrawString(spritefont, missionText , new Vector2(700, 200), Microsoft.Xna.Framework.Color.Black);
+            }
         }
     }
 }

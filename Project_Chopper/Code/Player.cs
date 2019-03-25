@@ -229,7 +229,7 @@ namespace Chopper.Code
             //Matrix rotMatrix = Matrix.CreateRotationZ(sprite.Rotation);
             Matrix rotMatrix = Matrix.CreateRotationZ(chopperBase.Rotation);
             Vector2 velocity = Vector2.Transform(speed, rotMatrix);
-            float rotate = 2.25f / 60.0f;
+            float rotate = 1.75f / 60.0f;
             //speed = speed / 1.035f;
             //speed = new Vector2(0, 0);
             speed /= 1.05f;

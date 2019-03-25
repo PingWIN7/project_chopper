@@ -37,7 +37,6 @@ namespace Chopper.Code
             }
         }
 
-
         public Level(int width, int height)
         {
             mapLayout = new Sprite[width, height];
@@ -157,6 +156,15 @@ namespace Chopper.Code
 
             explosiveBullets.Clear();
             return tmp;
+        }
+
+        public bool IsEveryoneDead()
+        {
+            if (movingEnemies.Count == 0 && turretEnemies.Count == 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         public void Draw(SpriteBatch spriteBatch)
