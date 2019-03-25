@@ -21,7 +21,7 @@ namespace Chopper.Code
         int BASEFUELCONSUMPTION = 10;
         int MAXFUELCONSUMPTION = 20;
 
-        Vector2 basespeed = new Vector2(0, -12);
+        Vector2 basespeed = new Vector2(0, -9);
 
         private ChopperBase chopperBase;
 
