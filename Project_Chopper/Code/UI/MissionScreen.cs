@@ -50,7 +50,9 @@ namespace Game1Test.Code
 
             spriteFont = UIClass.GetHudSpriteFont();
             selectHelicopterButton = new ButtonWithText(UIClass.GetBaseButtonTexture(), new Vector2(screenWidthHalf, heightForButton), UIClass.GetHudSpriteFont(), "Select Helicopter", 1);
+            selectHelicopterButton.disable();
             customiseWeaponsButton = new ButtonWithText(UIClass.GetBaseButtonTexture(), new Vector2(screenWidthHalf, heightForButton * 2), UIClass.GetHudSpriteFont(), "Customise Weapons", 1);
+            customiseWeaponsButton.disable();
             upgradeMenuButton = new ButtonWithText(UIClass.GetBaseButtonTexture(), new Vector2(screenWidthHalf, heightForButton * 3), UIClass.GetHudSpriteFont(), "Upgrade Menu", 1);
             startMissionButton = new ButtonWithText(UIClass.GetBaseButtonTexture(), new Vector2(screenWidthHalf, heightForButton * 4), UIClass.GetHudSpriteFont(), "Start Mission", 1);
             goBackButton = new ButtonWithText(UIClass.GetBaseButtonTexture(), new Vector2(screenWidthHalf, heightForButton * 5), UIClass.GetHudSpriteFont(), "Go Back", 1);
