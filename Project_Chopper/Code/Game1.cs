@@ -37,7 +37,7 @@ namespace Game1Test
 
             IsMouseVisible = true;
 
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.PreferredBackBufferWidth = 1920;
             graphics.PreferredBackBufferHeight = 1080;
             graphics.SupportedOrientations = DisplayOrientation.LandscapeLeft | DisplayOrientation.LandscapeRight;
@@ -106,7 +106,7 @@ namespace Game1Test
 
             level.AddEntity(listOfEnemies, true, true, false);
 
-            missionScreen = new MissionScreen(1, "GameTest", "Yarrr mission is to blow up\neverything\nBecause we want to\nAnd because you can\nBecause you have a\nfockin attackin\nchoppaaaaa!\nduhhh\n\n\n- General Kaminsky", graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, Color.SaddleBrown);
+            missionScreen = new MissionScreen(1, "GameTest", "Yarrr mission is to blow up\neverything\nBecause we want to\nAnd because you can\nBecause you have a\nfockin attackin\nchoppaaaaa!\nduhhh\nThen return to the base\n\n- General Kaminsky", graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight, Color.SaddleBrown);
             GameData.menuState = MenuState.MissionMenu;
             // TODO: use this.Content to load your game content here
 

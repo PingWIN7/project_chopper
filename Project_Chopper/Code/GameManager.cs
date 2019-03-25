@@ -23,7 +23,7 @@ namespace Chopper.Code
         List<Bullet> friendlyExplosiveBullets;
 
         List<EffectManager> effects;
-
+        bool completed = false;
 
         Player player;
         Level level;
@@ -58,6 +58,11 @@ namespace Chopper.Code
                 UI.upgradeButton.Visible(false);
                 bool isPlayerAboveHelipad = PlayerAboveHelipad();
                 player.PlayerCanLand(isPlayerAboveHelipad);
+                if (completed)
+                {
+                    UI.EnableTextOnScreen(100);
+                }
+
                 if (isPlayerAboveHelipad)
                 {
                     UI.landButton.SpecialCase();
@@ -65,6 +70,11 @@ namespace Chopper.Code
                 if (player.Health > 0 && !player.changeAltitude)
                 {
                     player.Update(gameTime);
+
+                    if (level.IsEveryoneDead()&&!completed)
+                    {
+                            UI.EnableTextOnScreen(0);
+                    }
                 }
                 else
                 {
@@ -87,6 +97,10 @@ namespace Chopper.Code
                         {
                             if (PlayerAboveHelipad())
                             {
+                                if (level.IsEveryoneDead())
+                                {
+                                    completed = true;
+                                }
                                 //On helipad
                                 int cost = player.UpdateOnHelipad(gameTime);
                                 UI.upgradeButton.Visible(true);
@@ -102,7 +116,6 @@ namespace Chopper.Code
                             {
                                 player.UpdateOnLand(gameTime);
                             }
-
                         }
                     }
                 }
