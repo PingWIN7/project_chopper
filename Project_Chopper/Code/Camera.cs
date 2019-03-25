@@ -65,7 +65,7 @@ namespace Chopper.Code
         public Camera()
         {
             //zoom = 1.0f;
-            zoom = 0.75f;
+            zoom = 0.5f;
             rotation = 0.0f;
             position = Vector2.Zero;
         }
